@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="/css/styles.css">
+<%- include("partials/header"); -%>
+
+
+<form class="" action="/home" method="post">
+  <div class="listOfEvents">
+    <h2>Your events:</h2>
+    <%  events.forEach(function(event){ %>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%=event.title%>
+        <span class="badge badge-primary badge-pill">
+          <%=event.content + " hours per week"%>
+        </span>
+      </li>
+    </ul>
+  </div>
+  <% }) %>
+
+</form>
+
+<h2>Week View:</h2>
+<div class="temporary">
+
+  <script type="text/javascript">
+    //jshint esversion: 6
+    var rows = 24;
+    var columns = 7;
+
+    var [r, c] = [rows, columns];
+    var filledArray = Array(r).fill().map(() => Array(c).fill("-----Click Here-----"));
+    filledArray[0][0]= "Monday";
+    filledArray[0][1]="Tuesday";
+    filledArray[0][2]="Wednesday";
+    filledArray[0][3]="Thursday";
+    filledArray[0][4]="Friday";
+    filledArray[0][5]="Saturday";
+    filledArray[0][6]="Sunday";
+
+
+
+    function createTable(tableData) {
+      var table = document.createElement('table');
+      var tableBody = document.createElement('tbody');
+
+      tableData.forEach(function(rowData) {
+        var row = document.createElement('tr');
+
+        rowData.forEach(function(cellData) {
+          var cell = document.createElement('td');
+          cell.appendChild(document.createTextNode(cellData));
+          row.appendChild(cell);
+        });
+
+        tableBody.appendChild(row);
+      });
+
+      table.appendChild(tableBody);
+      document.body.appendChild(table);
+    }
+
+    var weekTable = createTable(filledArray);
+
+
+
+
+
+
+
+
+
+    console.log(weekTable);
+  </script>
+
+
+
+  <style>
+    table,
+    tr,
+    td {
+      border: 1px solid black;
+      margin: 0px 0px 0px 200px;
+    }
+  </style>
+
+</div>
+
+
+
+
+
+
+<%- include("partials/footer"); -%>

@@ -1,14 +1,35 @@
-
 <%- include("partials/header"); -%>
-    <h1>Compose</h1>
-    <form class="" action="/compose" method="post">
-      <div class="form-group">
-        <label>Title</label>
-        <input class="form-control" type="text" name="postTitle">
-        <label>Post</label>
-        <textarea class="form-control" name="postBody" rows="5" cols="30"></textarea>
-      </div>
-      <button class="btn btn-primary" type="submit" name="button">Publish</button>
-    </form>
+<h2>Compose new entry: </h2>
+<form class="" action="/compose" method="post">
+  <div class="form-group">
+    <label>Title</label>
+    <input class="form-control" type="text" name="pTitle">
+    <label>Post</label>
+    <textarea class="form-control" name="pContent" rows="5" cols="30"></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit" name="button">Publish</button>
+</form>
+
+
+
+<form class="" action="/compose" method="post">
+  <h2>Your journal entries:</h2>
+  <%  posts.forEach(function(post){ %>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2><%=post.pTitle%></h2>
+      <p>
+        <%=post.pContent.substring(0, 100) + " ..."%>
+        <a href="/posts/<%=post.pTitle%>">Read More</a>
+      </p>
+    </li>
+  </ul>
+  <% }) %> 
+</form>
+
+
+
+
+
 
 <%- include("partials/footer"); -%>
